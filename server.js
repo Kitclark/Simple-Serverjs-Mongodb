@@ -93,6 +93,19 @@ app.delete('/delete-user', async (req, res) => {
   }
 });
 
+
+// 🔍 GET all users
+app.get('/user', async (req, res) => {
+  try {
+    const users = await User.find(); // Fetch all users
+    res.json(users); // Send them as JSON
+  } catch (err) {
+    console.error('❌ Error fetching users:', err.message);
+    res.status(500).send('❌ Server error');
+  }
+});
+
+
 // Start server
 const PORT = 5000;
 app.listen(PORT, () => {
